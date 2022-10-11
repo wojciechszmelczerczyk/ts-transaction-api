@@ -1,0 +1,17 @@
+{
+  "name": "okopress-task",
+  "version": "1.0.0",
+  "description": "Date modification function",
+  "main": "index.js",
+  "scripts": {
+    "dev": "ts-node-dev ./util/modifyDate.ts"
+  },
+  "keywords": [
+    "date"
+  ],
+  "author": "Wojciech Szmelczerczyk <szmelczerczykwojciech@gmail.com>",
+  "license": "ISC",
+  "dependencies": {
+    "ts-node-dev": "^2.0.0"
+  }
+}
