@@ -8,9 +8,10 @@ import {
   Req,
 } from "routing-controllers";
 import { TransactionService } from "../services/TransactionService";
-import { dataHandling } from "../middleware/dataHandling";
+import { dataHandling } from "../middlewares/dataHandling";
 import { Service } from "typedi";
 import { IPayload } from "../interfaces/IPayload";
+import { errorHandling } from "../middlewares/errorHandling";
 
 @Controller("/transaction")
 @Service()
@@ -19,6 +20,7 @@ export class TransactionController {
 
   @Post()
   @UseBefore(dataHandling)
+  @UseBefore(errorHandling)
   createTransaction(@Req() req, @Body() data: IPayload) {
     return this.transactionService.createTransaction(req, data);
   }

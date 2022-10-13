@@ -13,6 +13,7 @@ app.use(express.json());
 useExpressServer(app, {
   routePrefix: "/api",
   controllers: [TransactionController],
+  defaultErrorHandler: false,
 });
 
 app.listen(3000, () => console.log("Server running on port 3000"));
