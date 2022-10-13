@@ -1,6 +1,20 @@
-# Modify date function
+# Transaction managing API
 
 ## Description
+
+Simple REST API for transaction handling.
+
+## Table of contents
+
+- [Techstack](#techstack)
+- [Modify date](#modify-date-helper-function)
+
+## Techstack:
+
+- `Express`
+- `TypeScript`
+
+## Modify date helper function
 
 Simple function which takes as an input `Date` and transaction status `Boolean` value and returns date in future:
 
@@ -21,7 +35,3 @@ ex.
 ```json
 { "date": "2024-02-29T08:12:59Z" }
 ```
-
-## Techstack:
-
-- `TypeScript`
