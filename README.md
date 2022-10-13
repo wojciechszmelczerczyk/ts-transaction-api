@@ -7,12 +7,57 @@ Simple REST API for transaction handling.
 ## Table of contents
 
 - [Techstack](#techstack)
+- [Requirements](#requirements)
+- [Usage](#usage)
+- [API endpoints](#api)
 - [Modify date](#modify-date-helper-function)
 
 ## Techstack:
 
 - `Express`
 - `TypeScript`
+
+## Requirements:
+
+- `node`
+
+## Usage
+
+### Clone repository
+
+```
+git clone https://github.com/wojciechszmelczerczyk/ts-date-api.git
+```
+
+### Navigate to project folder
+
+```sh
+cd /ts-date-api
+```
+
+### Install dependencies
+
+```
+npm i
+```
+
+### Test function
+
+```
+npm run test-function
+```
+
+### Run API
+
+```
+npm run dev
+```
+
+## API
+
+| Endpoint           | Method | Description                                                 |
+| :----------------- | :----: | ----------------------------------------------------------- |
+| `/api/transaction` |  POST  | Add new transaction in `.csv` file and return modified date |
 
 ## Modify date helper function
 

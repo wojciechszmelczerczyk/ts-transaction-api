@@ -26,4 +26,4 @@ export const modifyDate = (date: Date, status: Boolean): Date => {
   return date;
 };
 
-// modifyDate(new Date("2024-01-31T08:12:59Z"), true);
+// console.log(modifyDate(new Date("2024-01-31T08:12:59Z"), true));

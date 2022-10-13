@@ -1,3 +1,3 @@
 export interface IWrite {
-  create(item: any): Promise<boolean>;
+  create(id: string, date: Date, status: string): Date;
 }
