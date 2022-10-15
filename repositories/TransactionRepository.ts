@@ -2,7 +2,7 @@ import { Service } from "typedi";
 import { IQueryParams, IRead, IWrite } from "../interfaces";
 import { createObjectCsvWriter } from "csv-writer";
 import { readFile, appendFile } from "fs/promises";
-import { getJsonFromCsv } from "convert-csv-to-json";
+import csvToJson from "convert-csv-to-json";
 import { parse } from "json2csv";
 const { paginate } = require("paginatejson");
 import { isEmpty } from "lodash";
@@ -19,7 +19,9 @@ export class TransactionRepository implements IWrite, IRead {
     }
 
     // otherwise proceed and parse .csv to .json
-    const json = getJsonFromCsv("transactions.csv");
+    const json = csvToJson
+      .fieldDelimiter(",")
+      .getJsonFromCsv("transactions.csv");
 
     // when no page provided by default display first page
     const pageQueryParam = page === undefined ? 1 : page;
@@ -49,8 +51,6 @@ export class TransactionRepository implements IWrite, IRead {
         { id: "status", title: "STATUS" },
       ],
       append: true,
-      fieldDelimiter: ";",
-      headerIdDelimiter: ";",
     });
 
     const transaction = [{ id, date, status }];
