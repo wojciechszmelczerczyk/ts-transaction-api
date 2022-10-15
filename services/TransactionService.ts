@@ -1,4 +1,5 @@
 import { Service } from "typedi";
+import { IQueryParams } from "../interfaces";
 import { IPayload } from "../interfaces/IPayload";
 import { TransactionRepository } from "../repositories/TransactionRepository";
 
@@ -6,7 +7,7 @@ import { TransactionRepository } from "../repositories/TransactionRepository";
 export class TransactionService {
   constructor(private transactionRepository: TransactionRepository) {}
 
-  public async getTransaction(query: any) {
+  public async getTransaction(query: IQueryParams) {
     return await this.transactionRepository.find(query);
   }
 

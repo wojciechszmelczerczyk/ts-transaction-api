@@ -1,22 +1,34 @@
 import { Service } from "typedi";
-import { IRead, IWrite } from "../interfaces";
+import { IQueryParams, IRead, IWrite } from "../interfaces";
 import { createObjectCsvWriter } from "csv-writer";
-import { appendFile } from "fs/promises";
+import { readFile, appendFile } from "fs/promises";
 import { getJsonFromCsv } from "convert-csv-to-json";
 import { parse } from "json2csv";
 const { paginate } = require("paginatejson");
+import { isEmpty } from "lodash";
 
 @Service()
 export class TransactionRepository implements IWrite, IRead {
-  async find(query: any) {
+  async find(query: IQueryParams) {
     // intercept query parameters
     const { page, limit } = query;
 
-    // parse .csv to .json
+    // if no query parameters provided, just read file
+    if (isEmpty(query)) {
+      return await readFile("transactions.csv", "utf-8");
+    }
+
+    // otherwise proceed and parse .csv to .json
     const json = getJsonFromCsv("transactions.csv");
 
+    // when no page provided by default display first page
+    const pageQueryParam = page === undefined ? 1 : page;
+
+    // when no limit provided by default display 5 records
+    const limitQueryParam = limit === undefined ? 5 : limit;
+
     // paginate json data
-    const { items } = paginate(json, page, limit);
+    const { items } = paginate(json, pageQueryParam, limitQueryParam);
 
     // parse back to csv
     const paginatedCsv = parse(items);

@@ -5,13 +5,12 @@ import {
   Post,
   UseBefore,
   Req,
-  UseAfter,
   QueryParams,
 } from "routing-controllers";
 import { TransactionService } from "../services/TransactionService";
-import { dataHandling, errorHandling } from "../middlewares";
+import { dataHandling, errorHandling, queryParams } from "../middlewares";
 import { Service } from "typedi";
-import { IPayload } from "../interfaces";
+import { IPayload, IQueryParams } from "../interfaces";
 
 @Controller("/transaction")
 @Service()
@@ -19,7 +18,8 @@ export class TransactionController {
   constructor(private transactionService: TransactionService) {}
 
   @Get()
-  getTransaction(@QueryParams() query) {
+  @UseBefore(queryParams, errorHandling)
+  getTransaction(@QueryParams() query: IQueryParams) {
     return this.transactionService.getTransaction(query);
   }
 
