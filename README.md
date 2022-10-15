@@ -34,7 +34,7 @@ git clone https://github.com/wojciechszmelczerczyk/ts-date-api.git
 ### Navigate to project folder
 
 ```sh
-cd /ts-date-api
+cd /ts-transaction-api
 ```
 
 ### Install dependencies
@@ -57,9 +57,21 @@ npm run dev
 
 ## Architecture
 
-API architecture. Example below presents `POST /api/transaction` endpoint flow.
+User send request with date and status body then middleware intercept request data, validate, modify date with [modifyDate](/util/modifyDate.ts) function and create random `uuid`. Then with [csv-writer](https://github.com/ryu1kn/csv-writer) library data is save in [transactions.csv](./transactions.csv) file. Server respond with modified date.
 
-<img src="./img/architecture.png">
+<details>
+<summary>Example</summary>
+
+<img src="./img/arch-post.png">
+</details>
+
+User send request with `page` and `limit` params then middleware validate those parameters. With [convert-csv-to-json](https://github.com/iuccio/CSVtoJSON) library, `csv` is being converted to `json`. By using [paginatejson](https://github.com/YeisonTapia/paginateJson) library, pagination is being performed on json data. In the end paginated json data is being converted back to `csv` format [json2csv](http://zemirco.github.io/json2csv) and send back to client.
+
+<details>
+<summary>Example</summary>
+
+<img src="./img/arch-get.png">
+</details>
 
 ## API
 
