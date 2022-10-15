@@ -6,12 +6,16 @@ import { TransactionRepository } from "../repositories/TransactionRepository";
 export class TransactionService {
   constructor(private transactionRepository: TransactionRepository) {}
 
+  public async getTransaction(query: any) {
+    return await this.transactionRepository.find(query);
+  }
+
   // create transaction service
-  public createTransaction(req, data: IPayload) {
+  public async createTransaction(req, data: IPayload) {
     const { id, date } = req;
 
     const { status } = data;
 
-    return this.transactionRepository.create(id, date, status);
+    return await this.transactionRepository.create(id, date, status);
   }
 }

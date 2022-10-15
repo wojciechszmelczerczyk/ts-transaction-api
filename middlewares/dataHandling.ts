@@ -1,12 +1,10 @@
-import { modifyDate } from "../util/modifyDate";
 import { v4 as uuidv4 } from "uuid";
-import { ExpressMiddlewareInterface, Middleware } from "routing-controllers";
+import { ExpressMiddlewareInterface } from "routing-controllers";
+import { isStatusCorrect, modifyDate } from "../util";
 import { Response } from "express";
 import { Service } from "typedi";
-import { isStatusCorrect } from "../util/isStatusCorrect";
 import moment from "moment";
 
-@Middleware({ type: "before" })
 @Service()
 export class dataHandling implements ExpressMiddlewareInterface {
   use(req, res: Response, next?: (err?: any) => any): void {

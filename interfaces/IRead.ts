@@ -1,3 +1,3 @@
 export interface IRead {
-  find(item: any): Promise<any[]>;
+  find(query: any): any;
 }

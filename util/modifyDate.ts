@@ -2,7 +2,7 @@ export const modifyDate = (date: Date, status: Boolean): Date => {
   // when status true, modify date by adding one month
 
   if (status) {
-    // when odd month
+    // when month has 31 days
     if (date.getDate() === 31) {
       // get last day of next month
       date.setDate(

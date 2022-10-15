@@ -1,25 +1,52 @@
 import { Service } from "typedi";
-import { IRead } from "../interfaces/IRead";
-import { IWrite } from "../interfaces/IWrite";
+import { IRead, IWrite } from "../interfaces";
+import { createObjectCsvWriter } from "csv-writer";
+import { appendFile } from "fs/promises";
+import { getJsonFromCsv } from "convert-csv-to-json";
 import { parse } from "json2csv";
-import { appendFile } from "fs";
+const { paginate } = require("paginatejson");
 
 @Service()
 export class TransactionRepository implements IWrite, IRead {
-  find(item: any): Promise<any[]> {
-    throw new Error("Method not implemented.");
+  async find(query: any) {
+    // intercept query parameters
+    const { page, limit } = query;
+
+    // parse .csv to .json
+    const json = getJsonFromCsv("transactions.csv");
+
+    // paginate json data
+    const { items } = paginate(json, page, limit);
+
+    // parse back to csv
+    const paginatedCsv = parse(items);
+
+    return paginatedCsv;
   }
-  create(id: string, date: Date, status: string): Date {
-    const csv = parse({ id, date, status });
 
-    const csvWithEndingCommas = csv.replace(/\n/g, ",\n");
+  async create(id: string, date: Date, status: string): Promise<Date> {
+    // add new line to file
+    await appendFile("transactions.csv", "\n");
 
-    appendFile("transactions.csv", csvWithEndingCommas, (err) => {
-      if (err) console.error("Cannot append data to file");
-      console.log("The data was appended to file!");
+    // create writer object
+    const csvWriter = createObjectCsvWriter({
+      path: "transactions.csv",
+      header: [
+        { id: "id", title: "ID" },
+        { id: "date", title: "DATE" },
+        { id: "status", title: "STATUS" },
+      ],
+      append: true,
+      fieldDelimiter: ";",
+      headerIdDelimiter: ";",
     });
 
-    // write to csv file
+    const transaction = [{ id, date, status }];
+
+    // write transaction data to file
+    csvWriter.writeRecords(transaction);
+
+    // return modified date
     return date;
   }
 }

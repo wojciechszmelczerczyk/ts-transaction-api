@@ -65,6 +65,7 @@ API architecture. Example below presents `POST /api/transaction` endpoint flow.
 
 | Endpoint           | Method | Description                                                 |
 | :----------------- | :----: | ----------------------------------------------------------- |
+| `/api/transaction` |  GET   | Get paginated transactions from `.csv` file                 |
 | `/api/transaction` |  POST  | Add new transaction in `.csv` file and return modified date |
 
 ## Middlewares
