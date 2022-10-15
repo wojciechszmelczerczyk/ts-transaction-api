@@ -63,10 +63,12 @@ API architecture. Example below presents `POST /api/transaction` endpoint flow.
 
 ## API
 
-| Endpoint           | Method | Description                                                 |
-| :----------------- | :----: | ----------------------------------------------------------- |
-| `/api/transaction` |  GET   | Get paginated transactions from `.csv` file                 |
-| `/api/transaction` |  POST  | Add new transaction in `.csv` file and return modified date |
+| Endpoint           | Method | Description                                                                                                      |
+| :----------------- | :----: | ---------------------------------------------------------------------------------------------------------------- |
+| `/api/transaction` |  GET   | Get transactions from `.csv` file. User can provide `page` and `limit` query params in order to paginate data\*. |
+| `/api/transaction` |  POST  | Add new transaction in `.csv` file and return modified date                                                      |
+
+\* by default `page` is `1` and `limit` is `5`.
 
 ## Middlewares
 

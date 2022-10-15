@@ -13,11 +13,6 @@ export class TransactionRepository implements IWrite, IRead {
     // intercept query parameters
     const { page, limit } = query;
 
-    // if no query parameters provided, just read file
-    if (isEmpty(query)) {
-      return await readFile("transactions.csv", "utf-8");
-    }
-
     // otherwise proceed and parse .csv to .json
     const json = csvToJson
       .fieldDelimiter(",")
