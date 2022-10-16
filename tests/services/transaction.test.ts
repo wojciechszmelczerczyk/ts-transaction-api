@@ -1,7 +1,7 @@
 import { describe, expect, test } from "@jest/globals";
 import { TransactionRepository } from "../../repositories/TransactionRepository";
 import { TransactionService } from "../../services/TransactionService";
-import { modifyDate } from "../../util";
+import { modifyDate } from "../../utils";
 
 describe("TransactionService -> createTransaction()", () => {
   test("should create new transaction when data is correct", () => {

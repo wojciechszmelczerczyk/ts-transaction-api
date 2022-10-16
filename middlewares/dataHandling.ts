@@ -1,6 +1,6 @@
 import { v4 as uuidv4 } from "uuid";
 import { ExpressMiddlewareInterface } from "routing-controllers";
-import { isStatusCorrect, modifyDate } from "../util";
+import { isStatusCorrect, modifyDate } from "../utils";
 import { Response } from "express";
 import { Service } from "typedi";
 import moment from "moment";
@@ -22,7 +22,7 @@ export class dataHandling implements ExpressMiddlewareInterface {
       const isDateValid = moment(date).isValid();
 
       if (!isDateValid || date === undefined)
-        throw new Error("Bad date format. String has to be format date");
+        throw new Error("Bad date format. String has to be date format");
 
       // parse string status to boolean value
       var booleanStatus = status === "true";

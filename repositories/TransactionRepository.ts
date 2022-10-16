@@ -1,7 +1,7 @@
 import { config } from "dotenv";
 import { Service } from "typedi";
 import { IRead, IWrite } from "../interfaces";
-import { createCsvWriter } from "../util";
+import { createCsvWriter } from "../utils";
 import { appendFile } from "fs/promises";
 import { parse } from "json2csv";
 const { paginate } = require("paginatejson");
