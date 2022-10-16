@@ -1,0 +1,506 @@
+{
+	"info": {
+		"_postman_id": "24c6d1bf-35a9-452c-b23c-7755791d701a",
+		"name": "ts-transaction-api",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "16678431"
+	},
+	"item": [
+		{
+			"name": "get transactions",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/api/transaction?page=2&limit=s",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"transaction"
+					],
+					"query": [
+						{
+							"key": "page",
+							"value": "2"
+						},
+						{
+							"key": "limit",
+							"value": "s"
+						}
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "when no query params provided",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/transaction",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"transaction"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "html",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "text/html; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "482"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"1e2-Mk0uDH5QlWppgyBHA1EdZkLIQH4\""
+						},
+						{
+							"key": "Date",
+							"value": "Sun, 16 Oct 2022 08:39:47 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "\"ID\",\"DATE\",\"STATUS\"\n\"03b18909-66db-4ec4-8290-4454096c9ace\",\"Thu Feb 29 2024 01:00:00 GMT+0100 (Central European Standard Time)\",\"true\"\n\"8501f243-43b5-4d55-818b-a10dbfb79d14\",\"Tue Feb 28 2023 01:00:00 GMT+0100 (Central European Standard Time)\",\"true\"\n\"dbd9db29-cd95-4866-8cc5-0a0613487d85\",\"Sun Feb 05 2023 01:00:00 GMT+0100 (Central European Standard Time)\",\"false\"\n\"acdffedb-12b8-4578-a423-3071976ab4f0\",\"Mon Feb 05 2024 01:00:00 GMT+0100 (Central European Standard Time)\",\"false\""
+				},
+				{
+					"name": "when query params provided",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/transaction?page=1&limit=2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"transaction"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "1"
+								},
+								{
+									"key": "limit",
+									"value": "2"
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "html",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "text/html; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "250"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"fa-Ae2TudIFsZBmw2qkmvsTueFt32Q\""
+						},
+						{
+							"key": "Date",
+							"value": "Sun, 16 Oct 2022 08:40:19 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "\"ID\",\"DATE\",\"STATUS\"\n\"03b18909-66db-4ec4-8290-4454096c9ace\",\"Thu Feb 29 2024 01:00:00 GMT+0100 (Central European Standard Time)\",\"true\"\n\"8501f243-43b5-4d55-818b-a10dbfb79d14\",\"Tue Feb 28 2023 01:00:00 GMT+0100 (Central European Standard Time)\",\"true\""
+				},
+				{
+					"name": "when provided page param is incorrect",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/transaction?page=s&limit=2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"transaction"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "s"
+								},
+								{
+									"key": "limit",
+									"value": "2"
+								}
+							]
+						}
+					},
+					"status": "Bad Request",
+					"code": 400,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "47"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"2f-/T32kLrllWyp/mHY2Z8SJRNrvC4\""
+						},
+						{
+							"key": "Date",
+							"value": "Sun, 16 Oct 2022 08:40:42 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"err\": \"Page has to be positive numeric value\"\n}"
+				},
+				{
+					"name": "when provided limit param incorrect",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/transaction?page=2&limit=s",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"transaction"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "2"
+								},
+								{
+									"key": "limit",
+									"value": "s"
+								}
+							]
+						}
+					},
+					"status": "Bad Request",
+					"code": 400,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "48"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"30-joKVmSAvziuuL39HB62gNW7Cjuo\""
+						},
+						{
+							"key": "Date",
+							"value": "Sun, 16 Oct 2022 08:41:05 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"err\": \"Limit has to be positive numeric value\"\n}"
+				}
+			]
+		},
+		{
+			"name": "add transaction",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n \"date\":\"sss\",\n \"status\": \"true\"   \n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/transaction",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"transaction"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "when provided data is corrrect",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n \"date\":\"2024-01-31\",\n \"status\": \"true\"   \n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/transaction",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"transaction"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "26"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"1a-cg5gypcwRFl31J0rowhz91+ed7I\""
+						},
+						{
+							"key": "Date",
+							"value": "Sun, 16 Oct 2022 08:42:56 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "\"2024-02-29T00:00:00.000Z\""
+				},
+				{
+					"name": "when provided status is incorrect",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n \"date\":\"2024-01-31\",\n \"status\": \"\"   \n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/transaction",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"transaction"
+							]
+						}
+					},
+					"status": "Bad Request",
+					"code": 400,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "68"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"44-qhppVgseDHBlHt970Qi4Iv2bhGM\""
+						},
+						{
+							"key": "Date",
+							"value": "Sun, 16 Oct 2022 08:43:31 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"err\": \"Bad status type. Status has to be either 'true' or 'false'\"\n}"
+				},
+				{
+					"name": "when provided date is incorrect",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n \"date\":\"sss\",\n \"status\": \"true\"   \n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/transaction",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"transaction"
+							]
+						}
+					},
+					"status": "Bad Request",
+					"code": 400,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "55"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"37-xVydms3LIwaaPoj1DAWmU8iv06I\""
+						},
+						{
+							"key": "Date",
+							"value": "Sun, 16 Oct 2022 08:44:03 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"err\": \"Bad date format. String has to be format date\"\n}"
+				}
+			]
+		}
+	]
+}

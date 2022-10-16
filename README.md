@@ -9,6 +9,7 @@ Simple REST API for transaction handling.
 - [Techstack](#techstack)
 - [Requirements](#requirements)
 - [Usage](#usage)
+- [Postman collection](#postman-collection)
 - [Architecture](#architecture)
 - [API endpoints](#api)
 - [Middlewares](#middlewares)
@@ -64,6 +65,10 @@ npm run test-function
 ```
 npm run dev
 ```
+
+## Postman collection
+
+You can import provided [postman json](./ts-transaction-api.postman_collection.json) and play with api.
 
 ## Architecture
 
