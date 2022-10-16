@@ -31,7 +31,7 @@ Simple REST API for transaction handling.
 ### Clone repository
 
 ```
-git clone https://github.com/wojciechszmelczerczyk/ts-date-api.git
+git clone https://github.com/wojciechszmelczerczyk/ts-transaction-api.git
 ```
 
 ### Navigate to project folder
