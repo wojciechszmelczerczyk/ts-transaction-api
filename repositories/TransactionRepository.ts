@@ -1,28 +1,22 @@
+import { config } from "dotenv";
 import { Service } from "typedi";
-import { IQueryParams, IRead, IWrite } from "../interfaces";
-import { createObjectCsvWriter } from "csv-writer";
-import { readFile, appendFile } from "fs/promises";
-import csvToJson from "convert-csv-to-json";
+import { IRead, IWrite } from "../interfaces";
+import { createCsvWriter } from "../util";
+import { appendFile } from "fs/promises";
 import { parse } from "json2csv";
 const { paginate } = require("paginatejson");
-import { isEmpty } from "lodash";
+import csvToJson from "convert-csv-to-json";
+import { QueryType } from "../types";
+
+config();
 
 @Service()
 export class TransactionRepository implements IWrite, IRead {
-  async find(query: IQueryParams) {
-    // intercept query parameters
-    const { page, limit } = query;
-
-    // otherwise proceed and parse .csv to .json
-    const json = csvToJson
+  find(pageQueryParam: QueryType, limitQueryParam: QueryType): string {
+    // proceed and parse .csv to .json
+    const json: string = csvToJson
       .fieldDelimiter(",")
-      .getJsonFromCsv("transactions.csv");
-
-    // when no page provided by default display first page
-    const pageQueryParam = page === undefined ? 1 : page;
-
-    // when no limit provided by default display 5 records
-    const limitQueryParam = limit === undefined ? 5 : limit;
+      .getJsonFromCsv(process.env.CSV_FILENAME);
 
     // paginate json data
     const { items } = paginate(json, pageQueryParam, limitQueryParam);
@@ -35,23 +29,12 @@ export class TransactionRepository implements IWrite, IRead {
 
   async create(id: string, date: Date, status: string): Promise<Date> {
     // add new line to file
-    await appendFile("transactions.csv", "\n");
-
-    // create writer object
-    const csvWriter = createObjectCsvWriter({
-      path: "transactions.csv",
-      header: [
-        { id: "id", title: "ID" },
-        { id: "date", title: "DATE" },
-        { id: "status", title: "STATUS" },
-      ],
-      append: true,
-    });
+    await appendFile(process.env.CSV_FILENAME, "\n");
 
     const transaction = [{ id, date, status }];
 
     // write transaction data to file
-    csvWriter.writeRecords(transaction);
+    createCsvWriter(process.env.CSV_FILENAME).writeRecords(transaction);
 
     // return modified date
     return date;

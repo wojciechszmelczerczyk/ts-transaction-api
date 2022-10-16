@@ -1,5 +1,5 @@
 import { dataHandling } from "./dataHandling";
 import { errorHandling } from "./errorHandling";
-import { queryParams } from "./queryParams";
+import { queryParamsHandling } from "./queryParamsHandling";
 
-export { dataHandling, errorHandling, queryParams };
+export { dataHandling, errorHandling, queryParamsHandling };

@@ -1,3 +1,5 @@
+import { QueryType } from "../types/QueryType";
+
 export interface IRead {
-  find(query: any): any;
+  find(pageQueryParam: QueryType, limitQueryParam: QueryType): string;
 }

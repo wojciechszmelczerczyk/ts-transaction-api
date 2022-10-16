@@ -13,11 +13,13 @@ Simple REST API for transaction handling.
 - [API endpoints](#api)
 - [Middlewares](#middlewares)
 - [Modify date](#modify-date-helper-function)
+- [Tests](#tests)
 
 ## Techstack:
 
 - `Express`
 - `TypeScript`
+- `Jest`
 
 ## Requirements:
 
@@ -35,6 +37,14 @@ git clone https://github.com/wojciechszmelczerczyk/ts-date-api.git
 
 ```sh
 cd /ts-transaction-api
+```
+
+### Env setup
+
+Create `.env` file in root directory.
+
+```dockerfile
+CSV_FILENAME=transactions.csv
 ```
 
 ### Install dependencies
@@ -171,4 +181,12 @@ ex.
 
 ```json
 { "date": "2024-02-29T08:12:59Z" }
+```
+
+## Tests
+
+### Run tests
+
+```
+npm run unit
 ```

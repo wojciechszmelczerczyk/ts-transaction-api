@@ -8,7 +8,11 @@ import {
   QueryParams,
 } from "routing-controllers";
 import { TransactionService } from "../services/TransactionService";
-import { dataHandling, errorHandling, queryParams } from "../middlewares";
+import {
+  dataHandling,
+  errorHandling,
+  queryParamsHandling,
+} from "../middlewares";
 import { Service } from "typedi";
 import { IPayload, IQueryParams } from "../interfaces";
 
@@ -18,7 +22,7 @@ export class TransactionController {
   constructor(private transactionService: TransactionService) {}
 
   @Get()
-  @UseBefore(queryParams, errorHandling)
+  @UseBefore(queryParamsHandling, errorHandling)
   getTransaction(@QueryParams() query: IQueryParams) {
     return this.transactionService.getTransaction(query);
   }

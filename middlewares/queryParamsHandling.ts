@@ -2,7 +2,7 @@ import { ExpressMiddlewareInterface } from "routing-controllers";
 import { Service } from "typedi";
 
 @Service()
-export class queryParams implements ExpressMiddlewareInterface {
+export class queryParamsHandling implements ExpressMiddlewareInterface {
   use(req, res: Response, next?: (err?: any) => any): void {
     try {
       // intercept query params
