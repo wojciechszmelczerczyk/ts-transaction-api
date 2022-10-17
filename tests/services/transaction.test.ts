@@ -4,7 +4,6 @@ import { TransactionRepository } from "../../repositories/TransactionRepository"
 
 describe("TransactionService -> createTransaction()", () => {
   const req = {
-    id: "58a39e7b-05a3-4daf-a44d-0b264a767ee3",
     date: new Date("2012-01-01"),
   };
 
