@@ -131,7 +131,7 @@ npm run unit:service
 ### Create transaction
 
 <details>
-<summary>when date and status are correct, should create transaction in csv file</summary>
+<summary>when date correct and status is equal to true, should return date one month in future</summary>
 
 ```javascript
 const req = {

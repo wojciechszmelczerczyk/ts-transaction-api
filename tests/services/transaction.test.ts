@@ -12,7 +12,7 @@ describe("TransactionService -> createTransaction()", () => {
     status: "true",
   };
 
-  test("when date and status are correct, should create transaction in csv file", async () => {
+  test("when date correct and status is equal to true, should return date one month in future", async () => {
     const res = await new TransactionService(
       new TransactionRepository()
     ).createTransaction(req, body);
