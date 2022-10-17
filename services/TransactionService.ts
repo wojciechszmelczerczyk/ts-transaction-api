@@ -27,8 +27,8 @@ export class TransactionService {
       const limitQueryParam: QueryType = limit === undefined ? 5 : limit;
 
       return this.transactionRepository.find(pageQueryParam, limitQueryParam);
-    } catch (e) {
-      return { err: e.message };
+    } catch (err) {
+      return { err: err.message };
     }
   }
 
@@ -61,8 +61,8 @@ export class TransactionService {
       const modifiedDate = modifyDate(toDate, booleanStatus);
 
       return await this.transactionRepository.create(id, modifiedDate, status);
-    } catch (e) {
-      return { err: e.message };
+    } catch (err) {
+      return { err: err.message };
     }
   }
 }

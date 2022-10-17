@@ -45,6 +45,6 @@ export class TransactionRepository implements IWrite, IRead {
     createCsvWriter(process.env.CSV_FILENAME).writeRecords(transaction);
 
     // return modified date
-    return date;
+    return { modifiedDate: date };
   }
 }

@@ -17,7 +17,9 @@ describe("TransactionService -> createTransaction()", () => {
       new TransactionRepository()
     ).createTransaction(req, body);
 
-    expect(res).toStrictEqual(new Date("2012-02-01T00:00:00.000Z"));
+    expect(res).toStrictEqual({
+      modifiedDate: new Date("2012-02-01T00:00:00.000Z"),
+    });
   });
 
   test("when status incorrect, should return error message", async () => {

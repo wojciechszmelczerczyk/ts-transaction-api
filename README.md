@@ -77,7 +77,8 @@ User send request with date and status body then express rest api intercept requ
 <details>
 <summary>Example</summary>
 
-<img src="./img/arch-post.png">
+<img src="./.github/img/arch-post.png">
+
 </details>
 
 User send request with `page` and `limit` params then express rest api validate those parameters. With [convert-csv-to-json](https://github.com/iuccio/CSVtoJSON) library, `csv` is being converted to `json`. By using [paginatejson](https://github.com/YeisonTapia/paginateJson) library, pagination is made on json data. In the end paginated json data is being converted back to `csv` format [json2csv](http://zemirco.github.io/json2csv) and send back to client.
@@ -85,17 +86,15 @@ User send request with `page` and `limit` params then express rest api validate 
 <details>
 <summary>Example</summary>
 
-<img src="./img/arch-get.png">
+<img src="./.github/img/arch-get.png">
 </details>
 
 ## API
 
-| Endpoint           | Method | Description                                                                                                      |
-| :----------------- | :----: | ---------------------------------------------------------------------------------------------------------------- |
-| `/api/transaction` |  GET   | Get transactions from `.csv` file. User can provide `page` and `limit` query params in order to paginate data\*. |
-| `/api/transaction` |  POST  | Add new transaction in `.csv` file and return modified date                                                      |
-
-\* by default `page` is `1` and `limit` is `5`.
+| Method |               Endpoint               |
+| :----: | :----------------------------------: |
+|  GET   | [`/api/transaction`](./docs/get.md)  |
+|  POST  | [`/api/transaction`](./docs/post.md) |
 
 ## Modify date helper function
 
@@ -234,7 +233,7 @@ test("when provided page and limit parameters are incorrect, should return error
   ).getTransaction(queryParams);
 
   expect(res).toStrictEqual({
-    err: "Param has to be positive numeric value",
+    err: "Page and limit have to be positive numeric values",
   });
 });
 ```

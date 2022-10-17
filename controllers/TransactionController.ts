@@ -5,7 +5,6 @@ import {
   Post,
   Req,
   QueryParams,
-  UseAfter,
 } from "routing-controllers";
 import { TransactionService } from "../services/TransactionService";
 
