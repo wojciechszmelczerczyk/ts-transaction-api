@@ -1,4 +1,5 @@
 import { ExpressMiddlewareInterface } from "routing-controllers";
+import { validateParams } from "../utils";
 import { Service } from "typedi";
 
 @Service()
@@ -8,11 +9,9 @@ export class queryParamsHandling implements ExpressMiddlewareInterface {
       // intercept query params
       const { page, limit } = req.query;
 
-      if (isNaN(parseInt(page)) && page !== undefined)
-        throw new Error("Page has to be positive numeric value");
+      validateParams(page);
 
-      if (isNaN(parseInt(limit)) && limit !== undefined)
-        throw new Error("Limit has to be positive numeric value");
+      validateParams(limit);
 
       next();
     } catch (err) {

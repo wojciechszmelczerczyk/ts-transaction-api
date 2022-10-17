@@ -1,6 +1,7 @@
 import { createObjectCsvWriter } from "csv-writer";
+import { CsvWriter } from "csv-writer/src/lib/csv-writer";
 
-export const createCsvWriter = (path: string) =>
+export const createCsvWriter = (path: string): CsvWriter<Object> =>
   createObjectCsvWriter({
     path,
     header: [

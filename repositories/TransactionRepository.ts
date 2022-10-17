@@ -12,22 +12,30 @@ config();
 
 @Service()
 export class TransactionRepository implements IWrite, IRead {
-  find(pageQueryParam: QueryType, limitQueryParam: QueryType): string {
-    // proceed and parse .csv to .json
-    const json: string = csvToJson
-      .fieldDelimiter(",")
-      .getJsonFromCsv(process.env.CSV_FILENAME);
+  find(pageQueryParam: QueryType, limitQueryParam: QueryType): string | object {
+    try {
+      // proceed and parse .csv to .json
+      const json: string = csvToJson
+        .fieldDelimiter(",")
+        .getJsonFromCsv(process.env.CSV_FILENAME);
 
-    // paginate json data
-    const { items } = paginate(json, pageQueryParam, limitQueryParam);
+      // paginate json data
+      const { items } = paginate(json, pageQueryParam, limitQueryParam);
 
-    // parse back to csv
-    const paginatedCsv = parse(items);
+      // when no data returned from pagination, throw an error
+      if (items.length === 0)
+        throw new Error("No data available for this parameters");
 
-    return paginatedCsv;
+      // parse back to csv
+      const paginatedCsv = parse(items);
+
+      return paginatedCsv;
+    } catch (err) {
+      return { err: err.message };
+    }
   }
 
-  async create(id: string, date: Date, status: string): Promise<Date> {
+  async create(id: string, date: Date, status: string): Promise<any> {
     // add new line to file
     await appendFile(process.env.CSV_FILENAME, "\n");
 

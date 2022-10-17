@@ -25,6 +25,7 @@ Simple REST API for transaction handling.
 ## Requirements:
 
 - `node`
+- `http client` for ex. `postman`, `httpie`
 
 ## Usage
 
