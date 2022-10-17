@@ -150,7 +150,7 @@ test("when date and status are correct, should create transaction in csv file", 
       req,
       body
     )
-  ).toStrictEqual(new Date("2012-02-01T00:00:00.000Z"));
+  ).toStrictEqual({ modifiedDate: new Date("2012-02-01T00:00:00.000Z") });
 });
 ```
 
