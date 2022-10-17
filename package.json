@@ -6,7 +6,7 @@
   "scripts": {
     "test-function": "ts-node-dev ./util/modifyDate.ts",
     "dev": "ts-node-dev --files ./index.ts",
-    "unit": "jest"
+    "unit:service": "jest"
   },
   "keywords": [
     "date"
