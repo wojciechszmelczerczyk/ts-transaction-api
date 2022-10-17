@@ -8,11 +8,22 @@
 	"item": [
 		{
 			"name": "get transactions",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
 			"request": {
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:3000/api/transaction?page=2&limit=s",
+					"raw": "http://localhost:3000/api/transaction?page=2&limit=2",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -29,7 +40,7 @@
 						},
 						{
 							"key": "limit",
-							"value": "s"
+							"value": "2"
 						}
 					]
 				}
@@ -154,7 +165,71 @@
 					"body": "\"ID\",\"DATE\",\"STATUS\"\n\"03b18909-66db-4ec4-8290-4454096c9ace\",\"Thu Feb 29 2024 01:00:00 GMT+0100 (Central European Standard Time)\",\"true\"\n\"8501f243-43b5-4d55-818b-a10dbfb79d14\",\"Tue Feb 28 2023 01:00:00 GMT+0100 (Central European Standard Time)\",\"true\""
 				},
 				{
-					"name": "when provided page param is incorrect",
+					"name": "when data doesn't exist for provided parameters",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/transaction?page=100&limit=100",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"transaction"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "100"
+								},
+								{
+									"key": "limit",
+									"value": "100"
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "47"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"2f-vqJfBkVEPAE2bF340xg700h5vfg\""
+						},
+						{
+							"key": "Date",
+							"value": "Mon, 17 Oct 2022 17:16:06 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"err\": \"No data available for this parameters\"\n}"
+				},
+				{
+					"name": "when provided page or limit param is incorrect",
 					"originalRequest": {
 						"method": "GET",
 						"header": [],
@@ -181,8 +256,8 @@
 							]
 						}
 					},
-					"status": "Bad Request",
-					"code": 400,
+					"status": "OK",
+					"code": 200,
 					"_postman_previewlanguage": "json",
 					"header": [
 						{
@@ -195,15 +270,15 @@
 						},
 						{
 							"key": "Content-Length",
-							"value": "47"
+							"value": "59"
 						},
 						{
 							"key": "ETag",
-							"value": "W/\"2f-/T32kLrllWyp/mHY2Z8SJRNrvC4\""
+							"value": "W/\"3b-uVqkMOV8enHGzsnwGHT0Hp1JCW8\""
 						},
 						{
 							"key": "Date",
-							"value": "Sun, 16 Oct 2022 08:40:42 GMT"
+							"value": "Mon, 17 Oct 2022 17:27:50 GMT"
 						},
 						{
 							"key": "Connection",
@@ -215,71 +290,7 @@
 						}
 					],
 					"cookie": [],
-					"body": "{\n    \"err\": \"Page has to be positive numeric value\"\n}"
-				},
-				{
-					"name": "when provided limit param incorrect",
-					"originalRequest": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "http://localhost:3000/api/transaction?page=2&limit=s",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "3000",
-							"path": [
-								"api",
-								"transaction"
-							],
-							"query": [
-								{
-									"key": "page",
-									"value": "2"
-								},
-								{
-									"key": "limit",
-									"value": "s"
-								}
-							]
-						}
-					},
-					"status": "Bad Request",
-					"code": 400,
-					"_postman_previewlanguage": "json",
-					"header": [
-						{
-							"key": "X-Powered-By",
-							"value": "Express"
-						},
-						{
-							"key": "Content-Type",
-							"value": "application/json; charset=utf-8"
-						},
-						{
-							"key": "Content-Length",
-							"value": "48"
-						},
-						{
-							"key": "ETag",
-							"value": "W/\"30-joKVmSAvziuuL39HB62gNW7Cjuo\""
-						},
-						{
-							"key": "Date",
-							"value": "Sun, 16 Oct 2022 08:41:05 GMT"
-						},
-						{
-							"key": "Connection",
-							"value": "keep-alive"
-						},
-						{
-							"key": "Keep-Alive",
-							"value": "timeout=5"
-						}
-					],
-					"cookie": [],
-					"body": "{\n    \"err\": \"Limit has to be positive numeric value\"\n}"
+					"body": "{\n    \"err\": \"Page and limit have to be positive numeric values\"\n}"
 				}
 			]
 		},
@@ -290,7 +301,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n \"date\":\"sss\",\n \"status\": \"true\"   \n}",
+					"raw": "{\n \"date\":\"2024-01-01\",\n \"status\": \"true\"   \n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -312,7 +323,7 @@
 			},
 			"response": [
 				{
-					"name": "when provided data is corrrect",
+					"name": "when provided data is correct",
 					"originalRequest": {
 						"method": "POST",
 						"header": [],
@@ -464,8 +475,8 @@
 							]
 						}
 					},
-					"status": "Bad Request",
-					"code": 400,
+					"status": "OK",
+					"code": 200,
 					"_postman_previewlanguage": "json",
 					"header": [
 						{
@@ -482,11 +493,11 @@
 						},
 						{
 							"key": "ETag",
-							"value": "W/\"37-xVydms3LIwaaPoj1DAWmU8iv06I\""
+							"value": "W/\"37-1Qckd1wVGnrO3JKtVEfcaopFSjo\""
 						},
 						{
 							"key": "Date",
-							"value": "Sun, 16 Oct 2022 08:44:03 GMT"
+							"value": "Mon, 17 Oct 2022 17:25:42 GMT"
 						},
 						{
 							"key": "Connection",
@@ -498,7 +509,7 @@
 						}
 					],
 					"cookie": [],
-					"body": "{\n    \"err\": \"Bad date format. String has to be format date\"\n}"
+					"body": "{\n    \"err\": \"Bad date format. String has to be date format\"\n}"
 				}
 			]
 		}

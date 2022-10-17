@@ -68,7 +68,7 @@ describe("TransactionService -> getTransaction()", () => {
     ).getTransaction(queryParams);
 
     expect(res).toStrictEqual({
-      err: "Param has to be positive numeric value",
+      err: "Page and limit have to be positive numeric values",
     });
   });
 });
