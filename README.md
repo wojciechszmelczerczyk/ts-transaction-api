@@ -134,7 +134,7 @@ ex.
 ### Run tests
 
 ```
-npm run unit:api
+npm run test:api
 ```
 
 ### Transaction
