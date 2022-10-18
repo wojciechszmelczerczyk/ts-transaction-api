@@ -51,7 +51,7 @@ CSV_FILENAME=transactions.csv
 ### Install dependencies
 
 ```
-npm i
+npm i --force
 ```
 
 ### Run API
