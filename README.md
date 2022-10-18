@@ -54,12 +54,6 @@ CSV_FILENAME=transactions.csv
 npm i
 ```
 
-### Test function
-
-```
-npm run test-function
-```
-
 ### Run API
 
 ```
@@ -114,6 +108,12 @@ Simple function which takes as an input `Date` and transaction status `Boolean` 
 - when boolean is set to `false`, returned date should be 5 days in
   future.
 - when boolean is set to `true`, returned date should be month in future.
+
+### Test function
+
+```
+npm run test:function
+```
 
 ex.
 
@@ -212,7 +212,13 @@ test("when status incorrect, should return error message", async () => {
 <summary>when page and limit query params correct, should return records specific for params</summary>
 
 ```javascript
+test("when page and limit query params correct, should return records specific for params", async () => {
+  const res = await request(app)
+    .get("/api/transaction")
+    .query({ page: "1", limit: "2" });
 
+  expect(res).toBeTruthy();
+});
 ```
 
 </details>
@@ -238,7 +244,10 @@ when no query params provided, should return first 5 records
 </summary>
 
 ```javascript
-
+test("when no query params provided, should return first 5 records", async () => {
+  const res = await request(app).get("/api/transaction");
+  expect(res).toBeTruthy();
+});
 ```
 
 </details>

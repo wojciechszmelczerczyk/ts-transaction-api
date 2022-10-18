@@ -52,7 +52,7 @@ describe("POST /api/transaction", () => {
 });
 
 describe("GET /api/transaction", () => {
-  test.only("when page and limit query params correct, should return records specific for params", async () => {
+  test("when page and limit query params correct, should return records specific for params", async () => {
     const res = await request(app)
       .get("/api/transaction")
       .query({ page: "1", limit: "2" });

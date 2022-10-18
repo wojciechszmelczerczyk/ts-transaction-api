@@ -47,7 +47,71 @@
 			},
 			"response": [
 				{
-					"name": "when no query params provided",
+					"name": "get transactions",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/transaction?page=2&limit=2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"transaction"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "2"
+								},
+								{
+									"key": "limit",
+									"value": "2"
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "html",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "text/html; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "252"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"fc-+pPrluSPb0TeR3xm+35pI55DvqQ\""
+						},
+						{
+							"key": "Date",
+							"value": "Tue, 18 Oct 2022 17:32:42 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "\"ID\",\"DATE\",\"STATUS\"\n\"dbd9db29-cd95-4866-8cc5-0a0613487d85\",\"Sun Feb 05 2023 01:00:00 GMT+0100 (Central European Standard Time)\",\"false\"\n\"acdffedb-12b8-4578-a423-3071976ab4f0\",\"Mon Feb 05 2024 01:00:00 GMT+0100 (Central European Standard Time)\",\"false\""
+				},
+				{
+					"name": "get transactions",
 					"originalRequest": {
 						"method": "GET",
 						"header": [],
@@ -78,15 +142,15 @@
 						},
 						{
 							"key": "Content-Length",
-							"value": "482"
+							"value": "597"
 						},
 						{
 							"key": "ETag",
-							"value": "W/\"1e2-Mk0uDH5QlWppgyBHA1EdZkLIQH4\""
+							"value": "W/\"255-xHVk8iU2EI3rseYMKmWRqhJtBD0\""
 						},
 						{
 							"key": "Date",
-							"value": "Sun, 16 Oct 2022 08:39:47 GMT"
+							"value": "Tue, 18 Oct 2022 17:32:59 GMT"
 						},
 						{
 							"key": "Connection",
@@ -98,15 +162,15 @@
 						}
 					],
 					"cookie": [],
-					"body": "\"ID\",\"DATE\",\"STATUS\"\n\"03b18909-66db-4ec4-8290-4454096c9ace\",\"Thu Feb 29 2024 01:00:00 GMT+0100 (Central European Standard Time)\",\"true\"\n\"8501f243-43b5-4d55-818b-a10dbfb79d14\",\"Tue Feb 28 2023 01:00:00 GMT+0100 (Central European Standard Time)\",\"true\"\n\"dbd9db29-cd95-4866-8cc5-0a0613487d85\",\"Sun Feb 05 2023 01:00:00 GMT+0100 (Central European Standard Time)\",\"false\"\n\"acdffedb-12b8-4578-a423-3071976ab4f0\",\"Mon Feb 05 2024 01:00:00 GMT+0100 (Central European Standard Time)\",\"false\""
+					"body": "\"ID\",\"DATE\",\"STATUS\"\n\"03b18909-66db-4ec4-8290-4454096c9ace\",\"Thu Feb 29 2024 01:00:00 GMT+0100 (Central European Standard Time)\",\"true\"\n\"8501f243-43b5-4d55-818b-a10dbfb79d14\",\"Tue Feb 28 2023 01:00:00 GMT+0100 (Central European Standard Time)\",\"true\"\n\"dbd9db29-cd95-4866-8cc5-0a0613487d85\",\"Sun Feb 05 2023 01:00:00 GMT+0100 (Central European Standard Time)\",\"false\"\n\"acdffedb-12b8-4578-a423-3071976ab4f0\",\"Mon Feb 05 2024 01:00:00 GMT+0100 (Central European Standard Time)\",\"false\"\n\"024219bf-2a95-449e-b095-350846d6ce61\",\"Thu Feb 29 2024 01:00:00 GMT+0100 (Central European Standard Time)\",\"true\""
 				},
 				{
-					"name": "when query params provided",
+					"name": "get transactions",
 					"originalRequest": {
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:3000/api/transaction?page=1&limit=2",
+							"raw": "http://localhost:3000/api/transaction?page=x&limit=y",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -119,145 +183,17 @@
 							"query": [
 								{
 									"key": "page",
-									"value": "1"
+									"value": "x"
 								},
 								{
 									"key": "limit",
-									"value": "2"
+									"value": "y"
 								}
 							]
 						}
 					},
-					"status": "OK",
-					"code": 200,
-					"_postman_previewlanguage": "html",
-					"header": [
-						{
-							"key": "X-Powered-By",
-							"value": "Express"
-						},
-						{
-							"key": "Content-Type",
-							"value": "text/html; charset=utf-8"
-						},
-						{
-							"key": "Content-Length",
-							"value": "250"
-						},
-						{
-							"key": "ETag",
-							"value": "W/\"fa-Ae2TudIFsZBmw2qkmvsTueFt32Q\""
-						},
-						{
-							"key": "Date",
-							"value": "Sun, 16 Oct 2022 08:40:19 GMT"
-						},
-						{
-							"key": "Connection",
-							"value": "keep-alive"
-						},
-						{
-							"key": "Keep-Alive",
-							"value": "timeout=5"
-						}
-					],
-					"cookie": [],
-					"body": "\"ID\",\"DATE\",\"STATUS\"\n\"03b18909-66db-4ec4-8290-4454096c9ace\",\"Thu Feb 29 2024 01:00:00 GMT+0100 (Central European Standard Time)\",\"true\"\n\"8501f243-43b5-4d55-818b-a10dbfb79d14\",\"Tue Feb 28 2023 01:00:00 GMT+0100 (Central European Standard Time)\",\"true\""
-				},
-				{
-					"name": "when data doesn't exist for provided parameters",
-					"originalRequest": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "http://localhost:3000/api/transaction?page=100&limit=100",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "3000",
-							"path": [
-								"api",
-								"transaction"
-							],
-							"query": [
-								{
-									"key": "page",
-									"value": "100"
-								},
-								{
-									"key": "limit",
-									"value": "100"
-								}
-							]
-						}
-					},
-					"status": "OK",
-					"code": 200,
-					"_postman_previewlanguage": "json",
-					"header": [
-						{
-							"key": "X-Powered-By",
-							"value": "Express"
-						},
-						{
-							"key": "Content-Type",
-							"value": "application/json; charset=utf-8"
-						},
-						{
-							"key": "Content-Length",
-							"value": "47"
-						},
-						{
-							"key": "ETag",
-							"value": "W/\"2f-vqJfBkVEPAE2bF340xg700h5vfg\""
-						},
-						{
-							"key": "Date",
-							"value": "Mon, 17 Oct 2022 17:16:06 GMT"
-						},
-						{
-							"key": "Connection",
-							"value": "keep-alive"
-						},
-						{
-							"key": "Keep-Alive",
-							"value": "timeout=5"
-						}
-					],
-					"cookie": [],
-					"body": "{\n    \"err\": \"No data available for this parameters\"\n}"
-				},
-				{
-					"name": "when provided page or limit param is incorrect",
-					"originalRequest": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "http://localhost:3000/api/transaction?page=s&limit=2",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "3000",
-							"path": [
-								"api",
-								"transaction"
-							],
-							"query": [
-								{
-									"key": "page",
-									"value": "s"
-								},
-								{
-									"key": "limit",
-									"value": "2"
-								}
-							]
-						}
-					},
-					"status": "OK",
-					"code": 200,
+					"status": "Bad Request",
+					"code": 400,
 					"_postman_previewlanguage": "json",
 					"header": [
 						{
@@ -278,7 +214,7 @@
 						},
 						{
 							"key": "Date",
-							"value": "Mon, 17 Oct 2022 17:27:50 GMT"
+							"value": "Tue, 18 Oct 2022 17:33:13 GMT"
 						},
 						{
 							"key": "Connection",
@@ -291,6 +227,70 @@
 					],
 					"cookie": [],
 					"body": "{\n    \"err\": \"Page and limit have to be positive numeric values\"\n}"
+				},
+				{
+					"name": "get transactions",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/transaction?page=2000&limit=1000",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"transaction"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "2000"
+								},
+								{
+									"key": "limit",
+									"value": "1000"
+								}
+							]
+						}
+					},
+					"status": "Bad Request",
+					"code": 400,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "47"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"2f-vqJfBkVEPAE2bF340xg700h5vfg\""
+						},
+						{
+							"key": "Date",
+							"value": "Tue, 18 Oct 2022 17:33:28 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"err\": \"No data available for this parameters\"\n}"
 				}
 			]
 		},
@@ -323,13 +323,13 @@
 			},
 			"response": [
 				{
-					"name": "when provided data is correct",
+					"name": "add transaction",
 					"originalRequest": {
 						"method": "POST",
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n \"date\":\"2024-01-31\",\n \"status\": \"true\"   \n}",
+							"raw": "{\n \"date\":\"2024-01-01\",\n \"status\": \"true\"   \n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -363,15 +363,15 @@
 						},
 						{
 							"key": "Content-Length",
-							"value": "26"
+							"value": "43"
 						},
 						{
 							"key": "ETag",
-							"value": "W/\"1a-cg5gypcwRFl31J0rowhz91+ed7I\""
+							"value": "W/\"2b-xJiDQm77/Vx3c1tC4ky2rCopWyo\""
 						},
 						{
 							"key": "Date",
-							"value": "Sun, 16 Oct 2022 08:42:56 GMT"
+							"value": "Tue, 18 Oct 2022 17:33:40 GMT"
 						},
 						{
 							"key": "Connection",
@@ -383,16 +383,79 @@
 						}
 					],
 					"cookie": [],
-					"body": "\"2024-02-29T00:00:00.000Z\""
+					"body": "{\n    \"modifiedDate\": \"2024-02-01T00:00:00.000Z\"\n}"
 				},
 				{
-					"name": "when provided status is incorrect",
+					"name": "add transaction",
 					"originalRequest": {
 						"method": "POST",
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n \"date\":\"2024-01-31\",\n \"status\": \"\"   \n}",
+							"raw": "{\n \"date\":\"2024-01-01\",\n \"status\": \"false\"   \n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/transaction",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"transaction"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "43"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"2b-L+bWPBZxwv1/BftuJtaFOPxGKlA\""
+						},
+						{
+							"key": "Date",
+							"value": "Tue, 18 Oct 2022 17:33:52 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"modifiedDate\": \"2024-01-06T00:00:00.000Z\"\n}"
+				},
+				{
+					"name": "add transaction",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n \"date\":\"2024-01-01\",\n \"status\": \"x\"   \n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -434,7 +497,7 @@
 						},
 						{
 							"key": "Date",
-							"value": "Sun, 16 Oct 2022 08:43:31 GMT"
+							"value": "Tue, 18 Oct 2022 17:34:04 GMT"
 						},
 						{
 							"key": "Connection",
@@ -449,13 +512,13 @@
 					"body": "{\n    \"err\": \"Bad status type. Status has to be either 'true' or 'false'\"\n}"
 				},
 				{
-					"name": "when provided date is incorrect",
+					"name": "add transaction",
 					"originalRequest": {
 						"method": "POST",
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n \"date\":\"sss\",\n \"status\": \"true\"   \n}",
+							"raw": "{\n \"date\":2,\n \"status\": \"false\"   \n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -475,8 +538,8 @@
 							]
 						}
 					},
-					"status": "OK",
-					"code": 200,
+					"status": "Bad Request",
+					"code": 400,
 					"_postman_previewlanguage": "json",
 					"header": [
 						{
@@ -497,7 +560,7 @@
 						},
 						{
 							"key": "Date",
-							"value": "Mon, 17 Oct 2022 17:25:42 GMT"
+							"value": "Tue, 18 Oct 2022 17:34:18 GMT"
 						},
 						{
 							"key": "Connection",

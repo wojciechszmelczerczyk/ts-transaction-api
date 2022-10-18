@@ -4,7 +4,7 @@
   "description": "Date modification function",
   "main": "index.js",
   "scripts": {
-    "test-function": "ts-node-dev ./utils/modifyDate.ts",
+    "test:function": "ts-node-dev ./utils/modifyDate.ts",
     "dev": "ts-node-dev --files ./index.ts",
     "test:api": "jest --watchAll"
   },
