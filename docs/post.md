@@ -14,7 +14,7 @@ Add new transaction in `.csv` file and return modified date
 
 ```json
 {
-  "date": "[valid date format]",
+  "date": "[valid iso date format]",
   "status": "[boolean]"
 }
 ```
@@ -49,6 +49,8 @@ Condition: If `date` is wrong.
   "err": "Bad date format. String has to be date format"
 }
 ```
+
+Code: `400 BAD REQUEST`
 
 Condition: If `status` is wrong.
 

@@ -2,11 +2,13 @@
 
 ## Description
 
-Get transactions from `.csv` file. User can provide `page` and `limit` query params in order to paginate data\*.
+Get transactions from `.csv` file. User can provide `page` and `limit` query params in order to paginate data.
 
-<b>URL :</b> `/api/transaction?page=&limit=`
+<b>URL :</b> `/api/transaction?page=integer&limit=integer`
 
 <b>URL Query Parameters:</b>
+
+When no parameters provided like so: `/api/transaction`, `page` is equal to 1 and `limit` is equal to 5.
 
 - `page=[integer]`
 - `limit=[integer]`

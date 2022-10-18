@@ -5,13 +5,14 @@ import { IPayload } from "../interfaces/IPayload";
 import { TransactionRepository } from "../repositories/TransactionRepository";
 import { QueryType, StatusType } from "../types";
 import { isStatusCorrect, modifyDate, validateParams } from "../utils";
+import { Response } from "express";
 import { v4 as uuidv4 } from "uuid";
 
 @Service()
 export class TransactionService {
   constructor(private transactionRepository: TransactionRepository) {}
 
-  public getTransaction(query: IQueryParams) {
+  public getTransaction(query: IQueryParams, res: Response): String | Object {
     try {
       // intercept query parameters
       const { page, limit } = query;
@@ -26,14 +27,18 @@ export class TransactionService {
       // when no limit provided by default display 5 records
       const limitQueryParam: QueryType = limit === undefined ? 5 : limit;
 
-      return this.transactionRepository.find(pageQueryParam, limitQueryParam);
+      return this.transactionRepository.find(
+        pageQueryParam,
+        limitQueryParam,
+        res
+      );
     } catch (err) {
-      return { err: err.message };
+      return res.status(400).json({ err: err.message });
     }
   }
 
   // create transaction service
-  public async createTransaction(req, data: IPayload) {
+  public async createTransaction(data: IPayload, res: Response): Promise<any> {
     try {
       const { status, date } = data;
 
@@ -43,7 +48,7 @@ export class TransactionService {
         );
 
       // check if date is date regex
-      const isDateValid = moment(date).isValid();
+      const isDateValid = moment(date, moment.ISO_8601).isValid();
 
       if (!isDateValid || date === undefined)
         throw new Error("Bad date format. String has to be date format");
@@ -62,7 +67,7 @@ export class TransactionService {
 
       return await this.transactionRepository.create(id, modifiedDate, status);
     } catch (err) {
-      return { err: err.message };
+      return res.status(400).json({ err: err.message });
     }
   }
 }

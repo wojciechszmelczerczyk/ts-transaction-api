@@ -1,18 +1,23 @@
 import { config } from "dotenv";
 import { Service } from "typedi";
-import { IRead, IWrite } from "../interfaces";
+import { IPayload, IRead, IWrite } from "../interfaces";
 import { createCsvWriter } from "../utils";
 import { appendFile } from "fs/promises";
 import { parse } from "json2csv";
 const { paginate } = require("paginatejson");
 import csvToJson from "convert-csv-to-json";
 import { QueryType } from "../types";
+import { Response } from "express";
 
 config();
 
 @Service()
 export class TransactionRepository implements IWrite, IRead {
-  find(pageQueryParam: QueryType, limitQueryParam: QueryType): string | object {
+  find(
+    pageQueryParam: QueryType,
+    limitQueryParam: QueryType,
+    res: Response
+  ): String | Object {
     try {
       // proceed and parse .csv to .json
       const json: string = csvToJson
@@ -31,7 +36,7 @@ export class TransactionRepository implements IWrite, IRead {
 
       return paginatedCsv;
     } catch (err) {
-      return { err: err.message };
+      return res.status(400).json({ err: err.message });
     }
   }
 
@@ -39,7 +44,7 @@ export class TransactionRepository implements IWrite, IRead {
     // add new line to file
     await appendFile(process.env.CSV_FILENAME, "\n");
 
-    const transaction = [{ id, date, status }];
+    const transaction: IPayload[] = [{ id, date, status }];
 
     // write transaction data to file
     createCsvWriter(process.env.CSV_FILENAME).writeRecords(transaction);

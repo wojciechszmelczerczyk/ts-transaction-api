@@ -3,13 +3,14 @@ import {
   Body,
   Get,
   Post,
-  Req,
   QueryParams,
+  Res,
 } from "routing-controllers";
 import { TransactionService } from "../services/TransactionService";
 
 import { Service } from "typedi";
 import { IPayload, IQueryParams } from "../interfaces";
+import { Response } from "express";
 
 @Controller("/transaction")
 @Service()
@@ -17,12 +18,12 @@ export class TransactionController {
   constructor(private transactionService: TransactionService) {}
 
   @Get()
-  getTransaction(@QueryParams() query: IQueryParams) {
-    return this.transactionService.getTransaction(query);
+  getTransaction(@QueryParams() query: IQueryParams, @Res() res: Response) {
+    return this.transactionService.getTransaction(query, res);
   }
 
   @Post()
-  createTransaction(@Req() req, @Body() data: IPayload) {
-    return this.transactionService.createTransaction(req, data);
+  createTransaction(@Body() data: IPayload, @Res() res: Response) {
+    return this.transactionService.createTransaction(data, res);
   }
 }

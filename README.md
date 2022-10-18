@@ -72,16 +72,25 @@ You can import provided [postman json](./ts-transaction-api.postman_collection.j
 
 ## Architecture
 
-User send request with date and status body then express rest api intercept request data, validate, modify date with [modifyDate](/util/modifyDate.ts) function and create random `uuid`. Then with [csv-writer](https://github.com/ryu1kn/csv-writer) library data is save in [transactions.csv](./transactions.csv) file. Server respond with modified date.
+### Introduction
+
+Library used to develop app architecture [routing-controllers](https://github.com/typestack/routing-controllers). REST API using `Controller`, `Service` and `Repository` approach.
+
+### POST /api/transaction
+
+User send request with date and status body then express rest api intercept request data, validate date with [moment](https://github.com/moment/moment) library, status with [isStatusCorrect](./utils/isStatusCorrect.ts) function, modify date with [modifyDate](/util/modifyDate.ts) function and create random `uuid`. Then with [csv-writer](https://github.com/ryu1kn/csv-writer) library data is save in [transactions.csv](./transactions.csv) file. Server respond with modified date.
 
 <details>
-<summary>Example</summary>
 
+<summary>Example</summary>
 <img src="./.github/img/arch-post.png">
 
 </details>
+<br/>
 
-User send request with `page` and `limit` params then express rest api validate those parameters. With [convert-csv-to-json](https://github.com/iuccio/CSVtoJSON) library, `csv` is being converted to `json`. By using [paginatejson](https://github.com/YeisonTapia/paginateJson) library, pagination is made on json data. In the end paginated json data is being converted back to `csv` format [json2csv](http://zemirco.github.io/json2csv) and send back to client.
+### GET /api/transaction
+
+User send request with `page` and `limit` query params then express rest api validate those parameters with [validateParams](./utils/validateParams.ts) function. With [convert-csv-to-json](https://github.com/iuccio/CSVtoJSON) library, `csv` is being converted to `json`. By using [paginatejson](https://github.com/YeisonTapia/paginateJson) library, pagination is made on json data. In the end paginated json data is being converted back to `csv` format [json2csv](http://zemirco.github.io/json2csv) and send back to client.
 
 <details>
 <summary>Example</summary>
@@ -89,12 +98,14 @@ User send request with `page` and `limit` params then express rest api validate 
 <img src="./.github/img/arch-get.png">
 </details>
 
+<br/>
+
 ## API
 
 | Method |               Endpoint               |
 | :----: | :----------------------------------: |
-|  GET   | [`/api/transaction`](./docs/get.md)  |
 |  POST  | [`/api/transaction`](./docs/post.md) |
+|  GET   | [`/api/transaction`](./docs/get.md)  |
 
 ## Modify date helper function
 
@@ -123,117 +134,72 @@ ex.
 ### Run tests
 
 ```
-npm run unit:service
+npm run unit:api
 ```
 
-### Transaction Service
+### Transaction
 
-### Create transaction
+### POST /api/transaction
 
 <details>
-<summary>when date correct and status is equal to true, should return date one month in future</summary>
+<summary>when date correct and status true, should return date month in future</summary>
 
 ```javascript
-const req = {
-  id: "58a39e7b-05a3-4daf-a44d-0b264a767ee3",
-  date: new Date("2012-01-01"),
-};
+test("when date correct and status true, should return date month in future", async () => {
+  const res = await request(app)
+    .post("/api/transaction")
+    .send({ date: "2012-02-02", status: "true" });
 
-const body = {
-  date: new Date("2012-01-01"),
-  status: "true",
-};
-
-test("when date and status are correct, should create transaction in csv file", () => {
-  expect(
-    new TransactionService(new TransactionRepository()).createTransaction(
-      req,
-      body
-    )
-  ).toStrictEqual({ modifiedDate: new Date("2012-02-01T00:00:00.000Z") });
+  expect(new Date(res.body.modifiedDate)).toStrictEqual(new Date("2012-03-02"));
 });
 ```
 
 </details>
 
 <details>
-<summary>when status incorrect, should return error message</summary>
+<summary>when date correct and status false, should return date 5 days in future</summary>
 
 ```javascript
-test("when status incorrect, should return error message", async () => {
-  body.status = "";
+test("when date correct and status false, should return date 5 days in future", async () => {
+  const res = await request(app)
+    .post("/api/transaction")
+    .send({ date: "2012-02-02", status: "false" });
 
-  const res = await new TransactionService(
-    new TransactionRepository()
-  ).createTransaction(req, body);
+  expect(new Date(res.body.modifiedDate)).toStrictEqual(new Date("2012-02-07"));
+});
+```
 
-  expect(res).toStrictEqual({
-    err: "Bad status type. Status has to be either 'true' or 'false'",
+</details>
+
+<details>
+<summary>
+when date incorrect, should return error message
+</summary>
+
+```javascript
+test("when date incorrect, should return error message", async () => {
+  const res = await request(app)
+    .post("/api/transaction")
+    .send({ date: 2, status: "true" });
+
+  expect(res.body).toStrictEqual({
+    err: "Bad date format. String has to be date format",
   });
 });
 ```
 
 </details>
-
-### Get transactions
-
 <details>
-<summary>when page and limit parameters correct, should return paginated csv</summary>
+<summary>when status incorrect, should return error message</summary>
 
 ```javascript
-test("when page and limit parameters correct, should return paginated csv", () => {
-  const queryParams = {
-    page: "1",
-    limit: "2",
-  };
-  const res = new TransactionService(
-    new TransactionRepository()
-  ).getTransaction(queryParams);
+test("when status incorrect, should return error message", async () => {
+  const res = await request(app)
+    .post("/api/transaction")
+    .send({ date: "2012-02-02", status: "x" });
 
-  expect(res).toBeTruthy();
-});
-```
-
-</details>
-
-<details>
-<summary>
-when data doesn't exist for provided page and limit parameters, should return error message
-</summary>
-
-```javascript
-test("when data doesn't exist for provided page and limit parameters, should return error message", () => {
-  const queryParams = {
-    page: "10000",
-    limit: "20000",
-  };
-  const res = new TransactionService(
-    new TransactionRepository()
-  ).getTransaction(queryParams);
-
-  expect(res).toStrictEqual({ err: "No data available for this parameters" });
-});
-```
-
-</details>
-
-<details>
-<summary>
-when provided page and limit parameters are incorrect, should return error message
-</summary>
-
-```javascript
-test("when provided page and limit parameters are incorrect, should return error message", () => {
-  const queryParams = {
-    page: "s",
-    limit: "s",
-  };
-  const res = new TransactionService(
-    new TransactionRepository()
-  ).getTransaction(queryParams);
-
-  expect(res).toStrictEqual({
-    err: "Page and limit have to be positive numeric values",
+  expect(res.body).toStrictEqual({
+    err: "Bad status type. Status has to be either 'true' or 'false'",
   });
 });
 ```
