@@ -205,3 +205,56 @@ test("when status incorrect, should return error message", async () => {
 ```
 
 </details>
+
+### GET /api/transaction
+
+<details>
+<summary>when page and limit query params correct, should return records specific for params</summary>
+
+```javascript
+
+```
+
+</details>
+
+<details>
+<summary>when query params exceed number of transactions, should return error message</summary>
+
+```javascript
+test("when query params exceed number of transactions, should return error message", async () => {
+  const res = await request(app)
+    .get("/api/transaction")
+    .query({ page: "1000", limit: "2000" });
+
+  expect(res.body.err).toBe("No data available for this parameters");
+});
+```
+
+</details>
+
+<details>
+<summary>
+when no query params provided, should return first 5 records
+</summary>
+
+```javascript
+
+```
+
+</details>
+<details>
+<summary>when one of provided parameters incorrect, should return error message</summary>
+
+```javascript
+test("when one of provided parameters incorrect, should return error message", async () => {
+  const res = await request(app)
+    .get("/api/transaction")
+    .query({ page: "x", limit: "2" });
+
+  expect(res.body.err).toBe(
+    "Page and limit have to be positive numeric values"
+  );
+});
+```
+
+</details>
